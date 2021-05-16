@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning" xmlns:altova="http://www.altova.com/xml-schema-extensions" elementFormDefault="qualified" attributeFormDefault="unqualified" vc:minVersion="1.1">
+    <xs:element name="traceList">
+        <xs:annotation>
+            <xs:documentation>Корневой элемент, содержит коллекцию блоков с трассировкой</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="trace" maxOccurs="unbounded">
+                    <xs:annotation>
+                        <xs:documentation>Блок, описывает один пункт из ТЗ и коллекцию связанных с ним функциональных требований</xs:documentation>
+                    </xs:annotation>
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="requirement" maxOccurs="unbounded">
+                                <xs:annotation>
+                                    <xs:documentation>Элемент описывает функциональное требование. Номер требования из докумена должен содержаться в теле элемента</xs:documentation>
+                                </xs:annotation>
+                                <xs:complexType>
+                                    <xs:simpleContent>
+                                        <xs:extension base="xs:int">
+                                            <xs:attribute name="release" use="optional">
+                                                <xs:annotation>
+                                                    <xs:documentation>Необязательный атрибут, указываюший, в каком релизе должно быть реализовано требование. Допускаются значения "1" или "2"</xs:documentation>
+                                                </xs:annotation>
+                                            </xs:attribute>
+                                        </xs:extension>
+                                    </xs:simpleContent>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                        <xs:attribute name="input_number" use="required">
+                            <xs:annotation>
+                                <xs:documentation>Атрибут содержит номер пункта из ТЗ заказчика</xs:documentation>
+                            </xs:annotation>
+                            <xs:simpleType>
+                                <xs:restriction base="xs:int"/>
+                            </xs:simpleType>
+                        </xs:attribute>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

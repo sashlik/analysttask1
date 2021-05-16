@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2019 sp1 (x64) (http://www.altova.com) by PJSC Sberbank (PJSC Sberbank) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning" elementFormDefault="qualified" attributeFormDefault="unqualified" vc:minVersion="1.1">
+    <xs:element name="service">
+        <xs:annotation>
+            <xs:documentation>Корневой элемент, содержащий группу интеграционных взаимодействий</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="integration" maxOccurs="unbounded">
+                    <xs:annotation>
+                        <xs:documentation>Элемент, описывающий одно атомарное интеграционное взаимодействие</xs:documentation>
+                    </xs:annotation>
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="provider">
+                                <xs:annotation>
+                                    <xs:documentation>Участник взаимодействия, предоставляющий услугу или данные, "сервер"</xs:documentation>
+                                </xs:annotation>
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:enumeration value="Alpha"/>
+                                        <xs:enumeration value="Beta"/>
+                                        <xs:enumeration value="Gamma"/>
+                                        <xs:enumeration value="Delta"/>
+                                        <xs:enumeration value="Omega"/>
+                                        <xs:enumeration value="Client"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+                            <xs:element name="consumer">
+                                <xs:annotation>
+                                    <xs:documentation>Участник взаимодействия, получающий услугу или данные, "клиент"</xs:documentation>
+                                </xs:annotation>
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:enumeration value="Alpha"/>
+                                        <xs:enumeration value="Beta"/>
+                                        <xs:enumeration value="Gamma"/>
+                                        <xs:enumeration value="Delta"/>
+                                        <xs:enumeration value="Omega"/>
+                                        <xs:enumeration value="Client"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+                            <xs:element name="type">
+                                <xs:annotation>
+                                    <xs:documentation>Тип интеграции: отправка сообщения через mq менеджер, передача файла через общий диск или HTTP запрос+ответ</xs:documentation>
+                                </xs:annotation>
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:enumeration value="http"/>
+                                        <xs:enumeration value="mq"/>
+                                        <xs:enumeration value="file"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+                            <xs:element name="dataType" maxOccurs="2">
+                                <xs:annotation>
+                                    <xs:documentation>Характер передаваемых данных</xs:documentation>
+                                </xs:annotation>
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:enumeration value="businessData"/>
+                                        <xs:enumeration value="metaData"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+                            <xs:element name="dataFromat">
+                                <xs:annotation>
+                                    <xs:documentation>Формат данных, котрые передаются в рамках взаимодействия</xs:documentation>
+                                </xs:annotation>
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:enumeration value="xml"/>
+                                        <xs:enumeration value="json"/>
+                                        <xs:enumeration value="plain"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>
